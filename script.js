@@ -448,7 +448,7 @@ class CooperationFormManager {
         });
     }
 
-    handleSubmit() {
+    async handleSubmit() {
         // Clear all previous errors
         this.clearAllErrors();
 
@@ -472,13 +472,48 @@ class CooperationFormManager {
         // Collect form data
         const formData = this.collectFormData();
 
-        // Log form data (in production, this would be sent to a server)
+        // Log form data
         console.group('📋 Form Submission');
         console.log('Form Data:', formData);
         console.groupEnd();
 
-        // Redirect to thank you page
-        window.location.href = 'thankyou.html';
+        // Disable submit button to prevent double submission
+        const submitButton = this.form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span>Надсилаємо...</span>';
+
+        try {
+            // Send data to webhook
+            const webhookUrl = 'https://dmekhed.app.n8n.cloud/webhook/055db9ff-5526-4a48-83e1-9f3be2a5c245';
+            
+            const response = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            console.log('✅ Form data sent successfully');
+            
+            // Redirect to thank you page
+            window.location.href = 'thankyou.html';
+            
+        } catch (error) {
+            console.error('❌ Error sending form data:', error);
+            
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+            
+            // Show error message to user
+            alert('Виникла помилка при відправці форми. Будь ласка, спробуйте ще раз або зв\'яжіться з нами за телефоном.');
+        }
     }
 
     validateForm() {
@@ -694,16 +729,7 @@ class SegmentTabsManager {
             }
         });
 
-        // Scroll to content smoothly
-        setTimeout(() => {
-            const segmentContent = document.querySelector('.segment-content');
-            if (segmentContent) {
-                segmentContent.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'nearest' 
-                });
-            }
-        }, 400);
+        // Removed automatic scroll - let user stay where they are
     }
 
     closeTab(tab) {
