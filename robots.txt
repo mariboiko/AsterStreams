@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://asterstreams.ua/sitemap.xml
+
+# Disallow thank you page from indexing
+Disallow: /thankyou.html
+
+# Allow all other pages
+Allow: /index.html
+Allow: /img/
+Allow: /style.css
+Allow: /script.js
