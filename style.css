@@ -2160,6 +2160,17 @@ body.menu-open::before {
     flex: 1;
 }
 
+.form__section-title-wrapper::after {
+    content: '(6 питань)';
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-left: 8px;
+    background: rgba(100, 116, 139, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
 .form__section-title {
     font-size: 1.125rem;
     font-weight: 600;
