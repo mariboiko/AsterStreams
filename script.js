@@ -754,6 +754,99 @@ class SegmentTabsManager {
     }
 }
 
+// Cooperation Models Management (Accordion-like behavior)
+class CooperationAccordionManager {
+    constructor() {
+        this.cards = document.querySelectorAll('.cooperation-card');
+        this.init();
+    }
+
+    init() {
+        if (!this.cards.length) return;
+
+        this.cards.forEach(card => {
+            const header = card.querySelector('.cooperation-card__header');
+            const content = card.querySelector('.cooperation-card__content');
+
+            if (!header || !content) return;
+
+            // Setup click handler
+            header.addEventListener('click', () => this.toggle(card));
+
+            // Setup keyboard handler
+            header.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.toggle(card);
+                }
+            });
+        });
+    }
+
+    toggle(card) {
+        const header = card.querySelector('.cooperation-card__header');
+        const content = card.querySelector('.cooperation-card__content');
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+            this.close(card);
+        } else {
+            this.open(card);
+        }
+    }
+
+    open(card) {
+        const header = card.querySelector('.cooperation-card__header');
+        const content = card.querySelector('.cooperation-card__content');
+
+        header.setAttribute('aria-expanded', 'true');
+        content.classList.add('is-open');
+
+        // Announce to screen readers
+        this.announceState(card, 'розгорнуто');
+    }
+
+    close(card) {
+        const header = card.querySelector('.cooperation-card__header');
+        const content = card.querySelector('.cooperation-card__content');
+
+        header.setAttribute('aria-expanded', 'false');
+        content.classList.remove('is-open');
+
+        // Announce to screen readers
+        this.announceState(card, 'згорнуто');
+    }
+
+    closeAll() {
+        this.cards.forEach(card => this.close(card));
+    }
+
+    openAll() {
+        this.cards.forEach(card => this.open(card));
+    }
+
+    announceState(card, state) {
+        const title = card.querySelector('.cooperation-card__title')?.textContent || '';
+        
+        // Create or update live region for screen reader announcements
+        let liveRegion = document.getElementById('cooperation-card-announcements');
+        if (!liveRegion) {
+            liveRegion = document.createElement('div');
+            liveRegion.id = 'cooperation-card-announcements';
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('aria-atomic', 'true');
+            liveRegion.style.position = 'absolute';
+            liveRegion.style.left = '-10000px';
+            liveRegion.style.width = '1px';
+            liveRegion.style.height = '1px';
+            liveRegion.style.overflow = 'hidden';
+            document.body.appendChild(liveRegion);
+        }
+        
+        liveRegion.textContent = `${title} ${state}`;
+    }
+}
+
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
@@ -764,6 +857,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new SmoothScrollEnhancer();
     new CooperationFormManager();
     new SegmentTabsManager();
+    new CooperationAccordionManager();
 
     // Log initialization
     console.log('🚀 Landing page initialized successfully');
@@ -772,6 +866,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('🎯 Active link highlighting enabled');
     console.log('📋 Cooperation form ready');
     console.log('🎛️ Segment tabs ready');
+    console.log('🤝 Cooperation models ready');
 });
 
 // Handle page visibility changes
@@ -791,5 +886,6 @@ window.LandingPage = {
     AnalyticsTracker,
     SmoothScrollEnhancer,
     CooperationFormManager,
-    SegmentTabsManager
+    SegmentTabsManager,
+    CooperationAccordionManager
 };

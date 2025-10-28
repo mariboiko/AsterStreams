@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лендінг сторінка - Професійні послуги</title>
-    <meta name="description" content="Професійні послуги та співпраця. Пакет послуг, моделі співпраці, про компанію.">
+    <title>Aster Streams - Швидкісні DC-зарядки для електромобілів</title>
+    <meta name="description" content="Aster Streams - оператор швидкісних зарядних станцій для електромобілів. Встановлюємо та обслуговуємо зарядні станції під ключ.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="img/logotypes asterstreans-02.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logotypes asterstreans-02.svg">
+    <link rel="apple-touch-icon" href="img/logotypes asterstreans-02.svg">
+    <link rel="shortcut icon" href="img/logotypes asterstreans-02.svg">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -240,7 +247,7 @@
                                         </div>
                                         <div class="segment-package__content">
                                             <h5 class="segment-package__item-title">Встановлення зарядної станції</h5>
-                                            <p class="segment-package__item-text">Зарядна станція потужністю 80–150 кВт з можливістю інтеграції BESS (акумулятор) або СЕС (сонячна генерація).</p>
+                                            <p class="segment-package__item-text">Зарядна станція потужністю 80–150 кВт з можливістю інтеграції BESS (акумулятор) та СЕС (сонячна генерація).</p>
                                         </div>
                                     </li>
                                     <li class="segment-package__item">
@@ -361,25 +368,32 @@
                 <div class="cooperation-models">
                     <!-- Model 1: Our Investment -->
                     <article class="cooperation-card">
-                        <div class="cooperation-card__header">
-                            <div class="cooperation-card__icon">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                        <button class="cooperation-card__header" aria-expanded="false">
+                            <div class="cooperation-card__header-content">
+                                <div class="cooperation-card__icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="cooperation-card__title-section">
+                                    <h3 class="cooperation-card__title">Наша інвестиція</h3>
+                                    <p class="cooperation-card__tagline">Зростайте без початкових вкладень</p>
+                                </div>
                             </div>
-                            <h3 class="cooperation-card__title">Наша інвестиція</h3>
-                            <p class="cooperation-card__tagline">Зростайте без початкових вкладень</p>
-                        </div>
-                        
-                        <div class="cooperation-card__price">
-                            <span class="cooperation-card__price-label">Ваші витрати</span>
-                            <span class="cooperation-card__price-value">0₴</span>
-                            <span class="cooperation-card__price-note">Нульові інвестиції</span>
-                        </div>
+                            <svg class="cooperation-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
                         
                         <div class="cooperation-card__content">
+                            <div class="cooperation-card__price">
+                                <span class="cooperation-card__price-label">Ваші витрати</span>
+                                <span class="cooperation-card__price-value">0₴</span>
+                                <span class="cooperation-card__price-note">Нульові інвестиції</span>
+                            </div>
+                            
                             <div class="cooperation-features">
                                 <div class="cooperation-feature">
                                     <svg class="cooperation-feature__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -436,37 +450,44 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="cooperation-card__footer">
-                            <a href="#form" class="cooperation-card__cta" data-analytics="cta" data-loc="models" data-model="our-investment">
-                                <span>Обрати модель</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+                            
+                            <div class="cooperation-card__footer">
+                                <a href="#form" class="cooperation-card__cta" data-analytics="cta" data-loc="models" data-model="our-investment">
+                                    <span>Обрати модель</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
                     
                     <!-- Model 2: Your Investment -->
                     <article class="cooperation-card">
-                        <div class="cooperation-card__header">
-                            <div class="cooperation-card__icon">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                        <button class="cooperation-card__header" aria-expanded="false">
+                            <div class="cooperation-card__header-content">
+                                <div class="cooperation-card__icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="cooperation-card__title-section">
+                                    <h3 class="cooperation-card__title">Ваша інвестиція</h3>
+                                    <p class="cooperation-card__tagline">Повний контроль і максимум доходу</p>
+                                </div>
                             </div>
-                            <h3 class="cooperation-card__title">Ваша інвестиція</h3>
-                            <p class="cooperation-card__tagline">Повний контроль і максимум доходу</p>
-                        </div>
-                        
-                        <div class="cooperation-card__price">
-                            <span class="cooperation-card__price-label">Ваш дохід</span>
-                            <span class="cooperation-card__price-value">100%</span>
-                            <span class="cooperation-card__price-note">Весь прибуток ваш</span>
-                        </div>
+                            <svg class="cooperation-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
                         
                         <div class="cooperation-card__content">
+                            <div class="cooperation-card__price">
+                                <span class="cooperation-card__price-label">Ваш дохід</span>
+                                <span class="cooperation-card__price-value">100%</span>
+                                <span class="cooperation-card__price-note">Весь прибуток ваш</span>
+                            </div>
+                            
                             <div class="cooperation-features">
                                 <div class="cooperation-feature">
                                     <svg class="cooperation-feature__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -523,15 +544,15 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="cooperation-card__footer">
-                            <a href="#form" class="cooperation-card__cta" data-analytics="cta" data-loc="models" data-model="your-investment">
-                                <span>Обрати модель</span>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+                            
+                            <div class="cooperation-card__footer">
+                                <a href="#form" class="cooperation-card__cta" data-analytics="cta" data-loc="models" data-model="your-investment">
+                                    <span>Обрати модель</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
