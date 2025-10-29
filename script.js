@@ -31,6 +31,8 @@ class MobileMenu {
         this.closeButton = document.querySelector('.mobile-menu__close');
         this.overlay = document.querySelector('.mobile-menu__overlay');
         this.mobileLinks = document.querySelectorAll('.mobile-menu__link');
+        this.mobileCtaButton = document.querySelector('.mobile-menu__cta a[href="#form"]') || 
+                               document.querySelector('.mobile-menu__cta .cta-button');
         
         this.isOpen = false;
         this.focusableElements = [];
@@ -60,6 +62,38 @@ class MobileMenu {
         // Mobile links click
         this.mobileLinks.forEach(link => {
             link.addEventListener('click', () => this.close());
+        });
+        
+        // Mobile CTA button click - use event delegation from mobile menu
+        this.mobileMenu?.addEventListener('click', (event) => {
+            const ctaButton = event.target.closest('.mobile-menu__cta a[href="#form"]') || 
+                            event.target.closest('.mobile-menu__cta .cta-button');
+            
+            if (ctaButton) {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                // Find target element
+                const targetId = ctaButton.getAttribute('href')?.substring(1);
+                if (!targetId) return;
+                
+                const targetElement = document.getElementById(targetId);
+                if (!targetElement) return;
+                
+                // Close menu first
+                this.close();
+                
+                // Scroll to form after menu closes
+                setTimeout(() => {
+                    const headerHeight = 70;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 300);
+            }
         });
         
         // Keyboard events
@@ -341,11 +375,20 @@ class SmoothScrollEnhancer {
     handleClick(event) {
         const link = event.target.closest('a[href^="#"]');
         if (!link) return;
+        
+        // Skip if this is a mobile menu CTA button (it has its own handler)
+        if (link.closest('.mobile-menu__cta')) {
+            return;
+        }
 
         const targetId = link.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
         
         if (!targetElement) return;
+
+        // Check if mobile menu is open
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const isMobileMenuOpen = mobileMenu?.classList.contains('is-open');
 
         event.preventDefault();
 
@@ -357,6 +400,20 @@ class SmoothScrollEnhancer {
             top: targetPosition,
             behavior: 'smooth'
         });
+
+        // Close mobile menu if it was open
+        if (isMobileMenuOpen) {
+            setTimeout(() => {
+                mobileMenu.classList.remove('is-open');
+                document.body.classList.remove('menu-open');
+                const burgerButton = document.querySelector('.burger-button');
+                if (burgerButton) {
+                    burgerButton.setAttribute('aria-expanded', 'false');
+                    burgerButton.setAttribute('aria-label', 'Відкрити меню');
+                    burgerButton.focus();
+                }
+            }, 300);
+        }
     }
 }
 
