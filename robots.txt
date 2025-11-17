@@ -12,3 +12,9 @@ Allow: /index.html
 Allow: /img/
 Allow: /style.css
 Allow: /script.js
+
+
+
+
+
+

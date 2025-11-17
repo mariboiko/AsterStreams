@@ -1061,6 +1061,16 @@ body {
     text-align: center;
 }
 
+.footer a {
+    color: var(--panel);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+}
+
+.footer a:hover {
+    color: var(--brand-3);
+}
+
 /* Desktop Styles (≥992px) */
 @media (min-width: 992px) {
     .header__nav {
